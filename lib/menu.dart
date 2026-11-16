@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+// TUGAS 7
+class ItemHomepage {
+  final String name;
+  final IconData icon;
+  final Color color;
+
+  ItemHomepage(this.name, this.icon, this.color);
+}
+
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
@@ -8,9 +17,11 @@ class MyHomePage extends StatelessWidget {
   final String kelas = "PBP B";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Proyek", Icons.folder),
-    ItemHomepage("Tambah Proyek", Icons.add_circle),
-    ItemHomepage("Logout", Icons.logout),
+    ItemHomepage("Lihat Proyek", Icons.folder, Colors.lightBlue),
+    ItemHomepage("Lihat Pendidikan", Icons.school, Colors.purple),
+    ItemHomepage("Lihat Skill", Icons.lightbulb, Colors.tealAccent),
+    ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.greenAccent),
+    ItemHomepage("Logout", Icons.logout, Colors.redAccent),
   ];
 
     @override
@@ -67,7 +78,7 @@ class MyHomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    crossAxisCount: 3,
+                    crossAxisCount: 5,
                     // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
                     shrinkWrap: true,
                     children: items.map((ItemHomepage item) {
@@ -116,13 +127,6 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-class ItemHomepage {
-  final String name;
-  final IconData icon;
-
-  ItemHomepage(this.name, this.icon);
-}
-
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
 
@@ -131,8 +135,8 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      // Menggunakan warna sekunder dari skema tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      // TUGAS 7 (GANTI JADI MENYESUAIKAN COLOR DARI CLASS ITEMHOMEPAGE)
+      color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         // Aksi ketika kartu ditekan oleh pengguna.
