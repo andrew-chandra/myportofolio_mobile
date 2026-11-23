@@ -30,3 +30,24 @@
 ### AI DISCLOSURE
 Saya menggunakan Claude model Sonnet 5.5 untuk membantu saya menjelaskan beberapa pertanyaan reflektif.
 https://claude.ai/share/7935a38d-339c-448d-a03d-2204ab8c60f1
+
+### TUGAS 8
+1. Naavigator bekerja seperti strukur data stack yang bersifat LIFO (last in first out),
+   - Navigator.push() menambahkan route baru di atas stack, halaman sebelumnya tetap ada, sehingga pengguna bisa kembali dengan tombol Back.
+   - Navigator.pushReplacement() mengganti route teratas dengan route baru. Halaman lama dibuang dari stack, jadi tidak bisa balik dengan tombol Back.
+   - Navigator.pop() menghapus route teratas dari stack, sehingga pengguna kembali ke route di elemen sebelumnya.
+
+   Untuk membuka formulir dari kartu aksi, aplikasi memakai Navigator.push() dengan MaterialPageRoute ke ProjectFormPage atau EducationFormPage. Opsi Home di drawer memakai Navigator.pushReplacement() ke MyHomePage(). Halaman yang sedang muncul cth: formulir akan direplace dengan halaman utama sehingga user langsung tiba di halaman utama dan formulir akan terhapus dari stack.
+
+2. Scaffold menyediakan kerangka halaman yang sama (appBar, drawer, body), sehingga setiap halaman punya struktur yang seragam. AppBar menjaga judul dan warna bagian atas tetap seragam. Drawer dibuat sekali sebagai widget terpisah lalu dipasang di MyHomePage, ProjectFormPage, dan EducationFormPage lewat drawer: const LeftDrawer(). Hasilnya navigasi selalu sama di semua halaman, dan kalau menu drawer diubah, semua halaman ikut berubah. Contoh warna tema: warna Colors.indigo dipakai di AppBar halaman Add Project dan Add Education, di DrawerHeader pada LeftDrawer, dan di tombol Save. Halaman utama memakai Theme.of(context).colorScheme.primary yang berasal dari seedColor: Colors.indigo di main.dart, sehingga warna dominan antar halaman terlihat seragam.
+
+3. Formulir disusun dengan urutan Form, SingleChildScrollView, Padding, Column. Column dipilih karena field diisi berurutan dari atas ke bawah, dan crossAxisAlignment.start akan menyesuaikan posisi. Padding memberi jarak antar field supaya tidak menempel. SingleChildScrollView penting ketika ruang layar terbatas, misalnya di layar sempit atau saat keyboard muncul dan menutupi sebagian layar. Column sendiri tidak bisa discroll, sehingga tanpa pembungkus ini konten bisa overflow dan tombol Save tidak terjangkau. Dengan scroll, pengguna tetap bisa menggulir ke semua input dan tombol Simpan.
+
+4. 
+GlobalKey<FormState> (_formKey) dipasang pada widget Form sebagai pengenal, sehingga kita bisa mengakses state form dari luar, misalnya memanggil _formKey.currentState!.validate() dan reset(). validator adalah fungsi pada tiap field yang mengembalikan pesan error bila input tidak sesuai aturan, atau null bila valid, validate() dipanggil saat tombol save ditekan. Fungsi ini menjalankan semua validator, menampilkan pesan error pada field yang bermasalah, dan mengembalikan true hanya jika semua input valid. Dialog ringkasan ditampilkan jika hasilnya true.
+
+Contoh nilai yang ditolak: nama institusi berisi spasi saja ("   "), tahun masuk 20a5, atau tahun lulus 2020 dengan tahun masuk 2025. Memilih jenis input atau papan ketik saja belum cukup karena keyboardType: TextInputType.number hanya mengubah tampilan papan ketik. Nilai tetap bisa dimasukkan lewat paste atau papan ketik fisik, dan papan ketik tidak bisa memeriksa aturan seperti rentang tahun, panjang karakter, input kosong, atau urutan tahun masuk dan lulus. Karena itu validasi di validator tetap diperlukan.
+
+### AI DISCLOSURE
+Saya menggunakan Claude model Sonnet 5.5 untuk membantu saya dalam fix error kode dan mengerjakan pertanyaan reflektif.
+https://claude.ai/share/1dac2147-f8fc-4d32-a155-20bcc9ea618a

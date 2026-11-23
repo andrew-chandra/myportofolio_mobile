@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
+import 'package:myportofolio_mobile/screens/education_form.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
-
+ 
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
-
+ 
   const ItemCard(this.item, {super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -28,6 +29,13 @@ class ItemCard extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ProjectFormPage()),
+            );
+          } else if (item.name == "Tambah Pendidikan") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EducationFormPage(),
+              ),
             );
           }
         },
@@ -52,3 +60,4 @@ class ItemCard extends StatelessWidget {
     );
   }
 }
+
