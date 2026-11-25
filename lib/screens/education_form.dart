@@ -12,7 +12,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
   final _formKey = GlobalKey<FormState>();
 
   String _institution = "";
-  String _level = "S1"; 
+  String _level = "S1";
   String _major = "";
   String _startYear = "";
   String _endYear = "";
